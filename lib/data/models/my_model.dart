@@ -1,21 +1,27 @@
 class MyModel {
-  String? id;
+  int? albumId;
+  int? id;
   String? title;
-  String? body;
+  String? url;
+  String? thumbnailUrl;
 
-  MyModel({this.id, this.title, this.body});
+  MyModel({this.albumId, this.id, this.title, this.url, this.thumbnailUrl});
 
   MyModel.fromJson(Map<String, dynamic> json) {
+    albumId = json['albumId'];
     id = json['id'];
     title = json['title'];
-    body = json['body'];
+    url = json['url'];
+    thumbnailUrl = json['thumbnailUrl'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['albumId'] = albumId;
     data['id'] = id;
     data['title'] = title;
-    data['body'] = body;
+    data['url'] = url;
+    data['thumbnailUrl'] = thumbnailUrl;
     return data;
   }
 }

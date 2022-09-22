@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_boilerplate/common/styles/app_text_style.dart';
-import 'package:getx_boilerplate/common/styles/dimens.dart';
+import 'package:getx_boilerplate/app/config/app_font_sizes.dart';
+import 'package:getx_boilerplate/app/config/app_text_styles.dart';
 import 'package:getx_boilerplate/ui/widgets/custom_inkwell_widget.dart';
 
 class Utils {
@@ -25,7 +25,7 @@ class Utils {
           message ?? "Something went wrong!",
           textAlign: TextAlign.center,
           maxLines: 6,
-          style: robotoMedium,
+          style: AppTextStyle.robotoBold,
         ),
         confirm: Align(
           alignment: Alignment.centerRight,
@@ -36,7 +36,8 @@ class Utils {
                 onTap?.call();
               },
               title: "OK",
-              textStyle: robotoMedium.copyWith(fontSize: Dimens.fs18)),
+              textStyle: AppTextStyle.robotoMedium
+                  .copyWith(fontSize: AppFontSizes.fs18)),
         ),
       );
 }

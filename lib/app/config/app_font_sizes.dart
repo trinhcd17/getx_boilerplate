@@ -1,6 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Dimens {
+class AppFontSizes {
   static final double fs10 = 10.sp;
   static final double fs12 = 12.sp;
   static final double fs13 = 13.sp;

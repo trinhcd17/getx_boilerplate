@@ -1,4 +1,4 @@
 class AppImages {
-  ///add app images here
+  /// Add app images here
   static const String husky = 'assets/images/husky.png';
 }

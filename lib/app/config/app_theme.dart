@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:getx_boilerplate/common/values/app_colors.dart';
+
+import 'app_colors.dart';
 
 ThemeData lightTheme = ThemeData(
   fontFamily: 'Roboto',

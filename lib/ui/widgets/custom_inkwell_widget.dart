@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_boilerplate/common/styles/app_text_style.dart';
-import 'package:getx_boilerplate/common/values/app_colors.dart';
+import 'package:getx_boilerplate/app/config/app_colors.dart';
+import 'package:getx_boilerplate/app/config/app_text_styles.dart';
 
 class CustomInkwellWidget extends Material {
   CustomInkwellWidget({
@@ -40,11 +40,8 @@ class CustomInkwellWidget extends Material {
           color: Colors.transparent,
           child: InkWell(
             onTap: onTap,
-            child: Text(
-              title,
-              style: textStyle ??
-                  robotoRegular.copyWith(color: textColor, fontSize: textSize),
-            ).paddingAll(8),
+            child: Text(title, style: textStyle ?? AppTextStyle.robotoRegular)
+                .paddingAll(8),
           ),
         );
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_boilerplate/common/styles/app_text_style.dart';
-import 'package:getx_boilerplate/common/styles/dimens.dart';
-import 'package:getx_boilerplate/common/values/app_colors.dart';
-import 'package:getx_boilerplate/controller/home_controller.dart';
-import 'package:getx_boilerplate/routes/app_pages.dart';
+import 'package:getx_boilerplate/app/config/app_text_styles.dart';
+import 'package:getx_boilerplate/app/routes/app_pages.dart';
+
+import '../../controllers/home/home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -24,18 +23,13 @@ class HomePage extends GetView<HomeController> {
                 Get.find<HomeController>();
               },
               builder: (_) {
-                return Text(
-                  "${controller.number()}",
-                  style: robotoBold.copyWith(
-                    fontSize: Dimens.fs18,
-                    color: AppColors.black,
-                  ),
-                );
+                return Text("${controller.number()}",
+                    style: AppTextStyle.robotoBold);
               },
             ),
             TextButton(
               onPressed: () {
-                Get.toNamed(Routes.details);
+                Get.toNamed(Routes.news);
               },
               child: const Text('Next screen'),
             )

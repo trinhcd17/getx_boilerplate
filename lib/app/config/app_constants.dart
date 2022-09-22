@@ -1,5 +1,6 @@
-class Constants {
-  static const String baseUrl = String.fromEnvironment('B');
+class AppConstants {
+  static const String baseURL = "https://jsonplaceholder.typicode.com";
+  static const String pathPhotos = "/photos";
 
   static const timeout = Duration(seconds: 5);
   static const String token = 'authToken';
