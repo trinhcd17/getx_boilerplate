@@ -46,7 +46,6 @@ flutter pub get
 * [Storage](https://github.com/jonataslaw/get_storage)
 * [ScreenUtil](https://github.com/OpenFlutter/flutter_screenutil/)
 * [Intl](https://github.com/dart-lang/intl)
-* [OctoImage](https://github.com/Baseflow/octo_image)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
@@ -64,38 +63,162 @@ Here is the folder structure we have been using in this project
 
 ```
 lib/
-|- bindings/
-|- common/
-    |- storage/
-    |- styles/
+|- app/
+    |- config/
+    |- routes/
+    |- services/
     |- utils/
-    |- values/
-|- controller/
 |- data/
     |- models/
     |- provider/
-    |- repositories/
-|- routes/
+        |- api/
+        |- firebase/
+    |- respositories/
 |- ui/
+    |- controllers/
     |- views/
     |- widgets/
 |- main.dart
 ```
 
 
-Now, lets dive into the lib folder which has the main code for the application.
+## Code Standards and Best Practices
 
+### Naming convention
+
+- Classes, enums, typedefs, and extensions: ``UpperCamelCase``
+- Libraries, packages, directories, and source files: ``lowercase_with_underscores``
+- Variables, constants, parameters, and named parameters: ``lowerCamelCase``
+
+### Use relative imports for files in lib
+
+
+```diff
+- DONT
+import 'package:demo/src/utils/dialog_utils.dart';
+
+
++ DO
+import '../../../utils/dialog_utils.dart';
 ```
-1- bindings - Contains all GetX controller bindings.
-2- common - Contains all the utilities/common functions  which are using throughout the app. This directory contains `constants`. `utilities`, `theme`, `strings`, `dimensions`, `storage`, `text styles`, `colors` and `path`.
-3- controller - Contains all GetX controller.
-4- data - Contains the data layer of your project, includes models, api providers, and repositories.
-5- routes - Contains the files for routes for your application.
-6- ui - Contains all the ui of your project, contains sub directory for each screen and custom widgets as per the need.
-7- main.dart - This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
+### Specify types for class member
+
+```diff
+- DON'T
+var item = 10;
+final car = Car();
+const timeOut = 2000;
+
+
++ DO
+int item = 10;
+final Car bar = Car();
+String name = 'john';
+const int timeOut = 20;
 ```
-**NOTE**: You can use [Get Cli](https://github.com/jonataslaw/get_cli) to auto generate ui pages, controllers and routes.
 
-## Conclusion
+### Avoid using as instead, use is operator
 
-This boilerplate template maybe seen over-architectured for what it is - but it is an example only. You can always customize it as per your preferences and need. All the issues/pull requests are welcome to make this boilerplate project more easy-to-use.
+```diff
+- DON'T
+(item as Animal).name = 'Lion';
+
+
++ DO
+if (item is Animal)
+  item.name = 'Lion';
+```
+
+### Use if condition instead of conditional expression
+
+```diff
+- DON'T
+  return Row(
+    children: [
+      Text("Hello"),
+      Platform.isAndroid ? Text("Android") : null,
+      Platform.isAndroid ? Text("Android") : SizeBox(),
+      Platform.isAndroid ? Text("Android") : Container(),
+    ]
+);
+
++ DO
+return Row(
+      children: 
+      [
+        Text("Hello"), 
+        if (Platform.isAndroid) Text("Android")
+      ]
+);
+```
+
+### Use ?? and ?. operators
+
+```diff
+- DON'T
+v = a == null ? b : a;
+
++ DO
+v = a ?? b;
+
+
+- DON'T
+v = a == null ? null : a.b;
+
++ DO
+v = a?.b;
+```
+
+### Use spread collections
+
+```diff
+- DON'T
+var y = [4,5,6];
+var x = [1,2];
+x.addAll(y);
+
+
++ DO
+var y = [4,5,6];
+var x = [1,2,...y];
+```
+
+### Use Cascades Operator
+```diff
+- DON'T
+var path = Path();
+path.lineTo(0, size.height);
+path.lineTo(size.width, size.height);
+path.lineTo(size.width, 0);
+path.close();  
+
+
++ DO
+var path = Path()
+..lineTo(0, size.height)
+..lineTo(size.width, size.height)
+..lineTo(size.width, 0)
+..close(); 
+```
+### Use raw string
+```diff
+- DON'T
+var s = 'This is demo string \\ and \$';
+
+
++ DO
+var s = r'This is demo string \ and $';
+```
+### Don’t explicitly initialize variables null
+```diff
+- DON'T
+int _item = null;
+
+
++ DO
+int _item;
+```
+### Use expression function bodies
+### Split widget into different Widgets.
+### Use ListView.builder for a long list
+### Use Const in Widgets
